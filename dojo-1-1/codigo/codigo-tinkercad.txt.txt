@@ -1,0 +1,80 @@
+// C++ code
+//1- El semáforo tiene que tener 2 leds de cada color 
+//como mínimo, en caso de que uno se  rompa. 
+//2- Tiene que implementar los tiempos correctos 
+//como se detallan a continuación. 
+//3- El verde dura 5 segundos. 
+//4- El amarillo dura 3 segundos. 
+//5- Rojo dura 5 segundos. 
+//6- Tiene que tener señalización para personas no videntes
+//como se detalla a  continuación. (Buzzer o piezo)
+//7- Durante el rojo: Tiene que sonar 2 vez por segundo 
+//en un tono FUERTE. 
+
+// Nombre: Iago Valverde Pachiani
+// EJ DOJO 1-1
+// DIV 1D
+
+#define LED_ROJO_A 12
+#define LED_AMARILLO_A 11
+#define LED_VERDE_A 10
+
+#define LED_ROJO_B 9
+#define LED_AMARILLO_B 8
+#define LED_VERDE_B 7
+
+#define PIEZO 6
+
+void enciendeApaga(int led, int led_dos, int tiempo);
+void piezoEncenderApagar(int buzzo,int tiempoPiezo);
+
+void setup()
+{
+  pinMode(LED_ROJO_A, OUTPUT);
+  pinMode(LED_AMARILLO_A, OUTPUT);
+  pinMode(LED_VERDE_A, OUTPUT);
+  pinMode(LED_ROJO_B, OUTPUT);
+  pinMode(LED_AMARILLO_B, OUTPUT);
+  pinMode(LED_VERDE_B, OUTPUT);
+  pinMode(PIEZO, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println("Se prende y apaga el verde");
+  encender(LED_VERDE_A,LED_VERDE_B,5000);
+  apagar(LED_VERDE_A,LED_VERDE_B,100);
+  
+  Serial.println("Se prende y apaga el amarillo");
+  encender(LED_AMARILLO_A,LED_AMARILLO_B,3000);
+  apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
+  
+  Serial.println("Se prende el rojo y suena el piezo");
+  for(int i = 0; i < 10; i++)
+  {
+    encender(LED_ROJO_A,LED_ROJO_B,500);
+    tone(PIEZO,700,250);
+  }
+  
+  Serial.println("Se apaga el rojo");
+  apagar(LED_ROJO_A,LED_ROJO_B, 100);
+  
+  Serial.println("Se prende y apaga el amarillo");
+  encender(LED_AMARILLO_A,LED_AMARILLO_B,3000);
+  apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
+}
+
+void encender(int led, int led_dos, int tiempo)
+{
+  digitalWrite(led, HIGH);
+  digitalWrite(led_dos, HIGH);
+  delay(tiempo);
+}
+
+void apagar(int led, int led_dos, int tiempo_dos)
+{
+  digitalWrite(led, LOW);
+  digitalWrite(led_dos, LOW);
+  delay(tiempo_dos);
+}
