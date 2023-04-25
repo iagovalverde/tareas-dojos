@@ -4,10 +4,11 @@
 
 ## INTEGRANTES
 * Iago Valverde Pachiani
-*
-*
-*
-*
+* Lucas Gabriél Sigüenza
+* Victoria Rodriguez  
+* Enzo Pose
+* Nicolás Velazquez
+
 
 ## PROYECTO: DOJO 1-1
 
