@@ -25,9 +25,6 @@
 
 #define PIEZO 6
 
-void enciendeApaga(int led, int led_dos, int tiempo);
-void piezoEncenderApagar(int buzzo,int tiempoPiezo);
-
 void setup()
 {
   pinMode(LED_ROJO_A, OUTPUT);
@@ -50,13 +47,12 @@ void loop()
   encender(LED_AMARILLO_A,LED_AMARILLO_B,3000);
   apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
   
-  Serial.println("Se prende el rojo y suena el piezo");
+  Serial.println("Se prende el rojo y suena el piezo 10x");
   for(int i = 0; i < 10; i++)
   {
     encender(LED_ROJO_A,LED_ROJO_B,500);
     tone(PIEZO,700,250);
   }
-  
   Serial.println("Se apaga el rojo");
   apagar(LED_ROJO_A,LED_ROJO_B, 100);
   
@@ -65,16 +61,17 @@ void loop()
   apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
 }
 
-void encender(int led, int led_dos, int tiempo)
+void encender(int led, int ledDos, int tiempo)
 {
   digitalWrite(led, HIGH);
-  digitalWrite(led_dos, HIGH);
+  digitalWrite(ledDos, HIGH);
   delay(tiempo);
 }
 
-void apagar(int led, int led_dos, int tiempo_dos)
+void apagar(int led, int ledDos, int tiempoDos)
 {
   digitalWrite(led, LOW);
-  digitalWrite(led_dos, LOW);
-  delay(tiempo_dos);
+  digitalWrite(ledDos, LOW);
+  delay(tiempoDos);
 }
+
