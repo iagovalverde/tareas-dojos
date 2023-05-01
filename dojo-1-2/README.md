@@ -1,4 +1,4 @@
-# DOJO - 1-1 
+# DOJO - 1-2
 
 ![LOGO TINKERCAD](https://github.com/iagovalverde/EjemploDocumentacion/blob/main/img/ArduinoTinkercad.jpg)
 
