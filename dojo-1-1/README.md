@@ -24,28 +24,37 @@ Además posee señalización para personas no videntes, que suena durante la luz
 
 ## FUNCIÓN PRINCIPAL
 
-Estas dos funciones se encargan de encender y apagar los leds. <br/> 
-led, led_dos, tiempo, tiempo_dos son parametros que pasamos a las funciones para despues asignarles el led que se prende y apaga y el tiempo, respectivamente. <br/>
-Los leds son asignados a través del hashtag define a los pines a los cuales están conectados.
+La función principal se encarga de prender y apagar los leds del semáforo, se utilizando de las funciones encender y apagar, respectivamente. <br/>
+Además, mientras el rojo está prendido, suena el piezo 2 veces por segundo. <br/>
+Los leds y el piezo son asignados a través del hashtag define a los pines a los cuales están conectados.
 
 ```C++ 
-void encender(int led, int led_dos, int tiempo)
+void loop()
 {
-  digitalWrite(led, HIGH);
-  digitalWrite(led_dos, HIGH);
-  delay(tiempo);
+  Serial.println("Se prende y apaga el verde");
+  encender(LED_VERDE_A,LED_VERDE_B,5000);
+  apagar(LED_VERDE_A,LED_VERDE_B,100);
+  
+  Serial.println("Se prende y apaga el amarillo");
+  encender(LED_AMARILLO_A,LED_AMARILLO_B,3000);
+  apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
+  
+  Serial.println("Se prende el rojo y suena el piezo 10x");
+  for(int i = 0; i < 10; i++)
+  {
+    encender(LED_ROJO_A,LED_ROJO_B,500);
+    tone(PIEZO,700,250);
+  }
+  Serial.println("Se apaga el rojo");
+  apagar(LED_ROJO_A,LED_ROJO_B, 100);
+  
+  Serial.println("Se prende y apaga el amarillo");
+  encender(LED_AMARILLO_A,LED_AMARILLO_B,3000);
+  apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
 }
-
-void apagar(int led, int led_dos, int tiempo_dos)
-{
-  digitalWrite(led, LOW);
-  digitalWrite(led_dos, LOW);
-  delay(tiempo_dos);
-}
-
 ```
 
 ## LINK AL PROYECTO
 
-* [proyecto](https://www.tinkercad.com/things/cRiRWlUUSa8-exquisite-densor-gaaris/editel?sharecode=HVyG5ZHqKGfbZCgjf5a3KhfqkXzYEoypaJbf4siyIkI)
+* [proyecto](https://www.tinkercad.com/things/76dDInoYdJ1-copy-of-iago-valverde-pachiani-dojo-1-1-div-1d-/editel?sharecode=cDfIfj1akZQv_q2SjwpW7svFTyuQVZkX2JxDTUFSXeo)
 
