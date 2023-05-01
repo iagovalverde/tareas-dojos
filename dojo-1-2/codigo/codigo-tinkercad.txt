@@ -1,0 +1,101 @@
+// C++ code
+//8-  Durante el amarillo: Tiene que sonar 1 vez por segundo
+//en un tono SUAVE. 
+//9- Al cambiar de verde a amarillo debe titilar 3 veces
+//el verde antes de pasar al amarillo
+//10- Al cambiar de amarillo a rojo se debe titilar 3 veces 
+//el amarillo
+//11- Al cambiar de rojo a Amarillo se debe titilar 3 veces 
+//el rojo
+//12- Al cambiar de amarillo a verde se debe titilar 3 veces 
+//el amarillo.
+
+// Nombre: Iago Valverde Pachiani
+// EJ DOJO 1-2
+// DIV 1D
+
+#define LED_ROJO_A 12
+#define LED_AMARILLO_A 11
+#define LED_VERDE_A 10
+
+#define LED_ROJO_B 9
+#define LED_AMARILLO_B 8
+#define LED_VERDE_B 7
+
+#define PIEZO 6
+
+
+void setup()
+{
+  pinMode(LED_ROJO_A, OUTPUT);
+  pinMode(LED_AMARILLO_A, OUTPUT);
+  pinMode(LED_VERDE_A, OUTPUT);
+  pinMode(LED_ROJO_B, OUTPUT);
+  pinMode(LED_AMARILLO_B, OUTPUT);
+  pinMode(LED_VERDE_B, OUTPUT);
+  pinMode(PIEZO, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println("Se prende y apaga el verde");
+  encender(LED_VERDE_A,LED_VERDE_B,5000);
+  titilar(LED_VERDE_A, LED_VERDE_B,150);
+  apagar(LED_VERDE_A,LED_VERDE_B, 100);
+  
+  Serial.println("Se prende el amarillo y suena el piezo 3x");
+  for(int i = 0; i < 3; i++)
+  {
+  	encender(LED_AMARILLO_A,LED_AMARILLO_B,1000);
+    tone(PIEZO,1300,250);
+  }
+  titilar(LED_AMARILLO_A, LED_AMARILLO_B,150);
+  Serial.println("Se apaga el amarillo");
+  apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
+  
+  Serial.println("Se prende el rojo y suena el piezo 10x");
+  for(int i = 0; i < 10; i++)
+  {
+    encender(LED_ROJO_A,LED_ROJO_B,500);
+    tone(PIEZO,700,250);
+  }
+  titilar(LED_ROJO_A, LED_ROJO_B,150);
+  Serial.println("Se apaga el rojo");
+  apagar(LED_ROJO_A,LED_ROJO_B, 100);
+  
+  Serial.println("Se prende el amarillo y suena el piezo 3x");
+  for(int i = 0; i < 3; i++)
+  {
+  	encender(LED_AMARILLO_A,LED_AMARILLO_B,1000);
+    tone(PIEZO,1300,250);
+  }
+  titilar(LED_AMARILLO_A, LED_AMARILLO_B,150);
+  Serial.println("Se apaga el amarillo");
+  apagar(LED_AMARILLO_A,LED_AMARILLO_B,100);
+}
+
+void encender(int led, int ledDos, int tiempo)
+{
+  digitalWrite(led, HIGH);
+  digitalWrite(ledDos, HIGH);
+  delay(tiempo);
+}
+
+void apagar(int led, int ledDos, int tiempoDos)
+{
+  digitalWrite(led, LOW);
+  digitalWrite(ledDos, LOW);
+  delay(tiempoDos);
+}
+
+void titilar(int ledTitilar, int ledTitilarDos, int tiempoTitilar)
+{
+  encender(ledTitilar, ledTitilarDos, tiempoTitilar);
+  apagar(ledTitilar, ledTitilarDos, tiempoTitilar);
+  encender(ledTitilar, ledTitilarDos, tiempoTitilar);
+  apagar(ledTitilar, ledTitilarDos, tiempoTitilar);
+  encender(ledTitilar, ledTitilarDos, tiempoTitilar);
+  apagar(ledTitilar, ledTitilarDos, tiempoTitilar);
+}
+
